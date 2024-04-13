@@ -39,6 +39,7 @@ Client -> Discord_UDP: UDPでデータ送信
 User -> Bot: /disconnect
 Bot -> Discord_G: 接続終了
 
+
 @enduml
 
 すみどらeveryone、daimaの親参戦エイプリルフール、Shunの雑談1爆破がDBPJP3大事件では
