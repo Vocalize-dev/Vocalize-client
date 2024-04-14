@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:vocalize_client/main_manu.dart';
+import 'package:vocalize/main_manu.dart';
 
 final log = Logger('Flutter');
 
@@ -17,6 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'NotoSansJP',
+      ),
+
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.red,
+        fontFamily: 'NotoSansJP',
+      ),
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -32,17 +41,13 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        fontFamily: 'NotoSansJP',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -53,26 +58,12 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -82,48 +73,39 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Column(children: [
+      body: Stack(children: [
         const Align(
-          alignment: Alignment.center,
-          child: Text(
-            'Voicelizeへようこそ！',
-            style: TextStyle(
-              fontSize: 60
-            )
-        )),
-        TextButton(
-            child: const Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                'Voicelizeへようこそ！',
-                style: TextStyle(
-                  fontSize: 40
-                )
-              )
-              ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MainMenu(),
+            alignment: Alignment(0, -0.4),
+            child: Text('Vocalizeへようこそ！', style: TextStyle(fontSize: 60))),
+        Align(
+            alignment: const Alignment(0,0.5),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MainMenu(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(0)),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: <Color>[
+                      Colors.orange[300]!,
+                      Colors.orange[500]!,
+                      Colors.orange[700]!,
+                    ],
+                  ),
                 ),
-              );
-            })
+                padding: const EdgeInsets.all(10),
+                child:
+                    const Text('Discordにログイン', style: TextStyle(fontSize: 40)),
+              ),
+            )),
       ]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
