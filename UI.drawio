@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="Rq6vKUAzr5i6UWnKAh0b" name="Page-1">
-        <mxGraphModel dx="2511" dy="1731" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+        <mxGraphModel dx="3952" dy="2484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -39,7 +39,7 @@
                 <mxCell id="14" value="メインメニュー" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" parent="1" vertex="1">
                     <mxGeometry x="675" y="540" width="110" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="92" style="edgeStyle=none;html=1;entryX=0.004;entryY=0.788;entryDx=0;entryDy=0;fontSize=19;fontColor=#FFFFFF;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="16" target="75">
+                <mxCell id="92" style="edgeStyle=none;html=1;entryX=0.004;entryY=0.788;entryDx=0;entryDy=0;fontSize=19;fontColor=#FFFFFF;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="16" target="75" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="16" value="接続" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" parent="1" vertex="1">

@@ -1,0 +1,29 @@
+@startuml voice_generation
+actor 人 as User
+participant "Vocalize-bot" as Bot
+participant "Vocalize-server" as Server
+participant "Vocalize-client" as Client
+participant "Discord Gateway" as Discord_G
+participant "Discord VoiceGateway" as Discord_VG
+participant "Discord VoiceUDP Endpoint" as Discord_UDP
+
+== 接続 ==
+User -> Bot: /connect 実行
+Bot -> Server:　接続リクエスト
+Server -> Bot: Op4をDiscord GateWayに送信しろ
+Bot -> Discord_G: Op4を送信
+Discord_G -> Bot: エンドポイント情報を送信
+Bot -> Server: エンドポイント情報を送信
+Server -> Client: エンドポイント情報を送信
+Client -> Discord_VG: WS接続
+Client -> Discord_UDP: UDP接続
+Client -> Server: 接続完了
+Server -> Bot: 接続完了
+
+== 音声合成 ==
+User -> Bot: テキスト
+Bot -> Server: 読み上げリクエスト
+Server -> Client: 読み上げデータを送信
+Client -> Discord_VG: Speakingを送信
+Client -> Discord_UDP: 音声データを送信
+

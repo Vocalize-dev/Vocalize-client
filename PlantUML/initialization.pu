@@ -1,0 +1,18 @@
+@startuml initialization
+actor 人 as User
+participant "Vocalize-Client" as Client
+participant "Vocalize-Server" as Server
+participant "Discord REST" as Discord
+
+== クライアント初回起動 ==
+Client <-> Server: GraphQLコネクション確立
+User -> Client: ログインボタンﾎﾟﾁｰ
+Client -> Discord: OAuth2 Authorize
+Discord -> User: 認証画面表示
+User -> Discord: 認証ﾎﾟﾁｰ
+Discord -> Server: callback
+Server -> Server: 登録処理
+Server -> Client: ユーザー情報送信
+Client -> User: ログイン完了
+
+@enduml
