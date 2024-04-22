@@ -1,0 +1,22 @@
+/*
+Bot向けAPI
+- Botからメッセージ取得
+- クライアントへのメッセージ生成要求
+*/
+
+syntax = "proto3";
+
+package vocalize;
+
+service TTSService {
+  rpc TextToSpeech (TextToSpeechRequest) returns (stream TextToSpeechResponse);
+}
+
+message TextToSpeechRequest {
+    string sessionId = 1;
+}
+
+message TextToSpeechResponse {
+    string serverId = 1;
+    string messageText = 2;
+}

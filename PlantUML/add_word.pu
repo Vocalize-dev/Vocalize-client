@@ -1,0 +1,29 @@
+@startuml add_word
+actor 人 as User
+participant "Vocalize-Client" as Client
+participant "Vocalize-Bot" as Bot
+participant "Vocalize-Server" as Server
+
+== Botコマンドで追加する場合 ==
+User -> Bot: /単語追加
+Bot -> Server: 単語データ送信
+Server -> Server: データベース更新
+
+alt 読み上げ中の場合
+    Server -> Client: 単語アップデート
+end
+
+Server -> Bot: 設定成功
+
+== クライアントから追加する場合 ==
+User -> Client: 単語追加
+Client -> Server: 単語データ送信
+Server -> Server: データベース更新
+
+alt 読み上げ中の場合
+    Client -> Client: 単語アップデート
+end
+
+Server -> Client: 設定成功
+
+@enduml

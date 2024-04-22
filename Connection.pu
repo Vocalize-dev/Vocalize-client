@@ -1,0 +1,56 @@
+@startuml connection
+actor 人 as User
+participant "Vocalize-Client" as Client
+participant "Vocalize-Bot" as Bot
+participant "Vocalize-Server" as Server
+participant "Discord Gateway" as Discord_G
+participant "Discord VoiceGateway" as Discord_VG
+participant "Discord VoiceUDP Endpoint" as Discord_UDP
+
+== セッション開始 ==
+User -> Bot: /connect
+Bot --> Server: 接続開始リクエスト
+
+Bot <-- Server: 接続ID返却
+User <- Bot: 接続ID表示
+
+== 接続 ==
+User -> Client: 接続IDを入力する
+Client --> Server: Websocket接続開始
+Client --> Server: 接続IDを送信
+Server --> Bot: OP4をDiscordGatewayに送れ
+
+Bot --> Discord_G: OP4(VoiceStateUpdate)
+Bot <-- Discord_G: トークン、VCサーバーアドレスを返却
+Bot --> Server: トークン、VCサーバーアドレスを送信
+Server --> Client: トークン、VCサーバーアドレスを送信
+
+Client --> Discord_VG: WS接続
+Client -> Discord_UDP: UDP接続
+
+== 読み上げ ==
+User -> Bot: テキスト
+Bot --> Server: 読み上げリクエスト
+Server --> Client: 読み上げデータ
+Client -> Discord_VG: Speakingとか送信
+Client -> Discord_UDP: UDPでデータ送信
+
+== セッション終了 ==
+User -> Bot: /disconnect
+Bot -> Discord_G: 接続終了
+
+
+@enduml
+
+すみどらeveryone、daimaの親参戦エイプリルフール、Shunの雑談1爆破がDBPJP3大事件では
+(>・ω・<) と犯人は供述しており
+
+Photoshopした
+
+
+瞬間見れんかったけどキレてるところで遭遇した
+
+
+奇妙な問題が普通と思えればいい
+
+と犯人は供述しており

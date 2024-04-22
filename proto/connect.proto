@@ -1,0 +1,47 @@
+/*
+クライアント向けAPI
+- 接続
+- 切断
+*/
+
+syntax = "proto3";
+
+package vocalize;
+
+service SessionService {
+  rpc Connect (ConnectRequest) returns (ConnectResponse);
+  rpc GetSessionInfo (GetSessionInfoRequest) returns (GetSessionInfoResponse);
+  rpc Disconnect (DisconnectRequest) returns (DisconnectResponse);
+}
+
+message ConnectRequest {
+    string serverId = 1;
+}
+
+message ConnectResponse {
+    string sessionId = 1;
+    string vEndpoint = 2;
+    string vGuildId = 3;
+    string vToken = 4;
+}
+
+message SessionInfo {
+    string vEndpoint = 2;
+    string vGuildId = 3;
+    string vToken = 4;
+}
+
+message GetSessionInfoRequest {
+}
+
+message GetSessionInfoResponse {
+    string sessionId = 1;
+    repeated SessionInfo = 2;
+}
+
+message DisconnectRequest {
+    string serverId = 1;
+}
+
+message DisconnectResponse {
+}
